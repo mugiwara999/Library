@@ -1,24 +1,7 @@
-const myLibrary = [
-  // {
-  //   title: "Harry Potter",
-  //   author: "J K Rownling",
-  //   pages: 300,
-  // },
-  // {
-  //   title: "To Kill a Mocking Bird",
-  //   author: "Harper Lee",
-  //   pages: 500,
-  // },
-  // {
-  //   title: "The Great Gatsby",
-  //   author: "F.Scott Fitzgerald",
-  //   pages: 400,
-  // },
-];
+const myLibrary = [];
 
-// let sizeOfLibrary = 2;
 const grid = document.querySelector(".grid");
-const btn = document.querySelector("[formmethod]");
+const btn = document.querySelector(".addBook");
 const addBook = document.querySelector("#btn");
 const dialog = document.querySelector("dialog");
 const title = document.querySelector("#name");
@@ -49,31 +32,6 @@ class Book {
   }
 }
 
-// add books in librart array to display
-for (let i = 0; i < myLibrary.length; i++) {
-  const div = document.createElement("div");
-  div.classList = "book";
-  div.style.backgroundColor = colors[colorChooser % 5];
-  if (colorChooser % 5 == 1 || colorChooser % 5 == 2) {
-    div.style.color = "black";
-  } else {
-    div.style.color = "white";
-  }
-
-  colorChooser++;
-
-  const titleDiv = document.createElement("div");
-  const authorDiv = document.createElement("div");
-  const pagesDiv = document.createElement("div");
-  titleDiv.textContent = "Title :" + myLibrary[i].title;
-  authorDiv.textContent = "Author :" + myLibrary[i].author;
-  pagesDiv.textContent = "Pages :" + myLibrary[i].pages;
-  div.appendChild(titleDiv);
-  div.appendChild(authorDiv);
-  div.appendChild(pagesDiv);
-  grid.appendChild(div);
-}
-
 function addBookToLibrary(book) {
   myLibrary.push(book);
   const div = document.createElement("div");
@@ -86,8 +44,6 @@ function addBookToLibrary(book) {
   }
 
   colorChooser++;
-  // div.dataset.booknumber = sizeOfLibrary;
-  // sizeOfLibrary++;
 
   const titleDiv = document.createElement("div");
   const authorDiv = document.createElement("div");
@@ -133,16 +89,22 @@ function addBookToLibrary(book) {
 
 addBook.addEventListener("click", () => {
   dialog.setAttribute("open", "");
-  title.value = "hello";
+  title.value = "";
+  author.value = "";
+  pages.value = "";
 });
-btn.addEventListener("click", () => {
+btn.addEventListener("click", (event) => {
   const title = document.querySelector("#name");
   const author = document.querySelector("#author");
   const pages = document.querySelector("#pages");
+
+  if ((title = "") || (author = "") || (pages = "")) {
+  }
 
   let book1 = new Book(title.value, author.value, pages.value);
 
   addBookToLibrary(book1);
   console.log(myLibrary, book1, title, author, pages);
   dialog.removeAttribute("open");
+  event.preventDefault();
 });

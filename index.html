@@ -1,30 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="style.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <button type="submit" id="btn">Add book</button>
+<head>
+  <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+</head>
 
-    <dialog>
-      <form>
-        <label for="name">Title of the Book</label>
-        <input type="text" class="bookInfo" id="name" name="name" />
-        <label for="author">Author</label>
-        <input type="text" class="bookInfo" id="author" name="author" />
-        <label for="pages">Pages</label>
-        <input type="number" id="pages" name="pages" class="bookInfo" />
-        <button type="button" formmethod="dialog">Add book</button>
-      </form>
-    </dialog>
+<body>
+  <button type="submit" id="btn">Add book</button>
 
-    <div class="library">
-      <div class="grid"></div>
-    </div>
-  </body>
-  <script src="index.js"></script>
+  <dialog>
+    <form method="post">
+      <label for="name">Title of the Book</label>
+      <input type="text" class="bookInfo" id="name" name="name" required />
+      <label for="author">Author</label>
+      <input type="text" class="bookInfo" id="author" name="author" required />
+      <label for="pages">Pages</label>
+      <input type="number" id="pages" name="pages" class="bookInfo" required />
+      <button type="submit" class="addBook">Add book</button>
+    </form>
+  </dialog>
+
+  <div class="library">
+    <div class="grid"></div>
+  </div>
+</body>
+<script src="index.js"></script>
+
 </html>
