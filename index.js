@@ -9,7 +9,6 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 
 function removeBook(button) {
-  console.log("removeBtn.forEach((button)");
   button.addEventListener("click", (event) => {
     let name = event.target.dataset.name;
     for (let i = 0; i < myLibrary.length; i++) {
@@ -25,10 +24,11 @@ const colors = ["#e63946", "#f1faee", "#a8dadc", "#457b9d", "#1d3557"];
 let colorChooser = 0;
 
 class Book {
-  constructor(title, author, pages) {
+  constructor(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = isRead;
   }
 }
 
@@ -50,6 +50,8 @@ function addBookToLibrary(book) {
   const pagesDiv = document.createElement("div");
   const remove = document.createElement("button");
   const read = document.createElement("button");
+  const btnDiv = document.createElement("div");
+  btnDiv.classList = "btnDiv";
 
   titleDiv.textContent = "Title :" + book.title;
   authorDiv.textContent = "Author :" + book.author;
@@ -63,48 +65,57 @@ function addBookToLibrary(book) {
   div.appendChild(titleDiv);
   div.appendChild(authorDiv);
   div.appendChild(pagesDiv);
-  div.appendChild(remove);
-  div.appendChild(read);
+  btnDiv.appendChild(remove);
+  btnDiv.appendChild(read);
+  div.appendChild(btnDiv);
   grid.appendChild(div);
   // removeBook(remove);
 
   remove.addEventListener("click", (event) => {
-    console.log("hie");
-    console.log(event);
-    console.log(event.target);
-    console.log(event.target.dataset);
-    console.log(event.target.dataset.name);
     let name = event.target.dataset.name;
     for (let i = 0; i < myLibrary.length; i++) {
-      console.log(i);
       if (myLibrary[0]["title"] == name) {
-        console.log("hi");
         myLibrary.splice(0, 1);
         break;
       }
     }
-    grid.removeChild(event.target.parentNode);
+    grid.removeChild(event.target.parentNode.parentNode);
+  });
+
+  read.addEventListener("click", (event) => {
+    const name = event.target.dataset.name;
+    for (let i = 0; i < myLibrary.length; i++) {
+      if (myLibrary[i]["title"] == name) {
+        if (myLibrary[i]["read"] == true) {
+          myLibrary[i]["read"] = false;
+        } else {
+          myLibrary[i]["read"] = true;
+        }
+      }
+    }
   });
 }
 
 addBook.addEventListener("click", () => {
   dialog.setAttribute("open", "");
-  title.value = "";
-  author.value = "";
-  pages.value = "";
+  title.value = "jfks";
+  author.value = "jfsk";
+  pages.value = "490";
 });
+
 btn.addEventListener("click", (event) => {
   const title = document.querySelector("#name");
   const author = document.querySelector("#author");
   const pages = document.querySelector("#pages");
+  const isRead = document.querySelector("#read");
 
-  if ((title = "") || (author = "") || (pages = "")) {
+  if (title.value == "" || author.value == "" || pages.value == "") {
+    return;
   }
 
-  let book1 = new Book(title.value, author.value, pages.value);
+  let book1 = new Book(title.value, author.value, pages.value, isRead.checked);
 
   addBookToLibrary(book1);
-  console.log(myLibrary, book1, title, author, pages);
   dialog.removeAttribute("open");
   event.preventDefault();
 });

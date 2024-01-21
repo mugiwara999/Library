@@ -1,3 +1,7 @@
+:root {
+  --hover: #{adjust-hue(white, 45deg)};
+}
+
 .grid {
   display: grid;
   padding: 50px;
@@ -16,11 +20,50 @@
   flex-direction: column;
   padding: 20px;
   justify-content: space-evenly;
-  align-items: start;
+  align-items: stretch;
   padding: 20px;
+  flex: 1;
 }
 
 .library {
   display: flex;
   flex: 1;
+}
+
+#btn {
+  border: 1px solid black;
+
+  background-color: #001d3d;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#btn:hover {
+  background-color: #003566;
+}
+
+.btnDiv {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+}
+
+.book div {
+  flex: 1;
+}
+
+.btnDiv button {
+  background-color: whitesmoke;
+  /* color: white; */
+  border: 1px black solid;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
 }
