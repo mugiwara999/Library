@@ -96,11 +96,12 @@ function addBookToLibrary(book) {
   });
 }
 
-addBook.addEventListener("click", () => {
+addBook.addEventListener("click", (event) => {
   dialog.setAttribute("open", "");
   title.value = "";
   author.value = "";
   pages.value = "";
+  event.preventDefault();
 });
 
 btn.addEventListener("click", (event) => {
