@@ -98,9 +98,9 @@ function addBookToLibrary(book) {
 
 addBook.addEventListener("click", () => {
   dialog.setAttribute("open", "");
-  title.value = "jfks";
-  author.value = "jfsk";
-  pages.value = "490";
+  title.value = "";
+  author.value = "";
+  pages.value = "";
 });
 
 btn.addEventListener("click", (event) => {
